@@ -21,13 +21,17 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-
+    //Keeps track of the Strings to display in the ListView
     ArrayList<String> items;
+
 
     ArrayAdapter<String> itemsAdapter;
 
+    //This resembles the ListView that we have on the Activity
     ListView lvItems;
 
+
+    //Function that runs when the Activity is created.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,8 +49,9 @@ public class MainActivity extends AppCompatActivity {
 
         setupListViewListener();
 
-    }
+    } // end onCreate
 
+    //Function that gets called when the Button is pressed (Connected in the XML File)
     public void onAddItem(View v){
         EditText etNewItem = (EditText) findViewById(R.id.editText);
 
@@ -83,6 +88,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+
+    //The following functions are used for persistence
+        //Allows the user to save the list through multiple uses of the application
 
 
     private File getDataFile(){
