@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SimpleToDo</string>
+    <string name="button_name">ADD</string>
+    <string name="generic_textField_text">Insert Item Here! :)</string>
+</resources>
