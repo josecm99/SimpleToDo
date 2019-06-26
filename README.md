@@ -30,7 +30,8 @@ Here's a walkthrough of implemented user stories:
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+Had a little hiccup with connecting Android Studio to GitHub directly, but was able to go back and connect it without a problem! :)
+
 
 ## License
 
