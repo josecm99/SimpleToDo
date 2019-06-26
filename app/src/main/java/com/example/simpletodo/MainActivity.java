@@ -157,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
 
             writeItems();
 
-            Toast.makeText(this, "Item Updtated", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Item Updated", Toast.LENGTH_SHORT).show();
 
         } // end if
 
