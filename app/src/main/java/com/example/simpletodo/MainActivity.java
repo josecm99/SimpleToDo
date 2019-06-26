@@ -1,5 +1,6 @@
 package com.example.simpletodo;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -29,6 +30,14 @@ public class MainActivity extends AppCompatActivity {
 
     //This resembles the ListView that we have on the Activity
     ListView lvItems;
+
+    //Numeric code used to identify the edit activity.
+    public static final int EDIT_REQUEST_CODE = 20;
+
+    //Keys used for passing data between activities.
+    public static final String ITEM_TEXT = "itemText";
+    public static final String ITEM_POSITION = "itemPosition";
+
 
 
     //Function that runs when the Activity is created.
@@ -85,7 +94,22 @@ public class MainActivity extends AppCompatActivity {
 
             } // end onItemLongClick
 
-        });
+        }); // end ItemLongClickListener
+
+        lvItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                //First parameter is context, second is class of activity to launch
+                Intent clickIntent = new Intent(MainActivity.this, EditItemActivity.class);
+
+                clickIntent.putExtra(ITEM_TEXT, items.get(i) );
+                clickIntent.putExtra(ITEM_POSITION, i);
+
+                startActivityForResult(clickIntent, EDIT_REQUEST_CODE);
+
+            }
+        }); // end onItemClickListener
 
     }
 
@@ -114,6 +138,31 @@ public class MainActivity extends AppCompatActivity {
             Log.e("MainActivityJose","Error Writing File :((");
         }
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+
+        super.onActivityResult(requestCode, resultCode, data);
+
+
+        if (resultCode == RESULT_OK && requestCode == EDIT_REQUEST_CODE) {
+
+            String updatedItem = data.getExtras().getString(ITEM_TEXT);
+
+            int position = data.getExtras().getInt(ITEM_POSITION, 0);
+
+            items.set(position, updatedItem);
+
+            itemsAdapter.notifyDataSetChanged();
+
+            writeItems();
+
+            Toast.makeText(this, "Item Updtated", Toast.LENGTH_SHORT).show();
+
+        } // end if
+
+
+    } // end onActivityResult
 
 
 
